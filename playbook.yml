@@ -3,26 +3,28 @@
 - name: manage webserver
   hosts: jenkins
   gather_facts: false
+  remote_user: ubuntu
   become: true
   tasks:
     - name: manage package
-      package: 
-         name: apache2 
+      package:
+         name: "{{ package_name }}"
          state: present
     - name: manage service
-      service: 
-         name: apache2
+      service:
+         name: "{{ service_name }}"
          state: started
     - name: deploy site
-      copy: 
+      copy:
          src: index.html
-         dest: /var/www/html/
+         dest: "{{ doc_root }}"
 - name: manage users
   hosts: localhost
+  connection: local
   gather_facts: false
   become: true
   tasks:
     - name: create and manage users
-      user: 
-         name: balaji
-         state: present  
+      user:
+         name: "{{ user_name }}"
+         state: present 

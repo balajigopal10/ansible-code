@@ -1,0 +1,8 @@
+---
+# vars file for webserver
+#
+'package_name': 'apache2'
+'server_name': 'apache2'
+'doc_root': '/var/www/html/'
+
+'user_name': 'balaji' 
